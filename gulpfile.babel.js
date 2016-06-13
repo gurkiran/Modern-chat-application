@@ -58,7 +58,7 @@ function devServerWatch() {
 }
 
 function devServerReload() {
-    return $.nodemon({
+    return $.forever({
        script: './build/server.js',
        watch: './build',
        env: {

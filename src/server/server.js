@@ -25,8 +25,9 @@ const io = socketIo(server);
 // // -------------------
 // // client webpack
 console.log(process.env.USE_WEBPACK);
-if (process.env.USE_WEBPACK === 'true') {
+// if (process.env.USE_WEBPACK === 'true') {
     var webpackMiddleware = require('webpack-dev-middleware'),
+        webpackHotMiddleware = require('webpack-hot-middleware'),
         webpack = require('webpack'),
         clientConfig = require('../../webpack.client');
         
@@ -43,9 +44,11 @@ if (process.env.USE_WEBPACK === 'true') {
             version: false
         }
      }));
+
+     app.use(webpackHotMiddleware(compiler));
     
     console.log(chalk.bgRed('Using Webpack dev middleware ! This is for dev only'));
-}
+// }
 
 // // -------------------
 // configure express 
@@ -78,7 +81,7 @@ app.get('/', (req, res) => {
 
 
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 function startServer() {
 	server.listen(port, () => {
 		console.log(`Started http server on ${port}`);
