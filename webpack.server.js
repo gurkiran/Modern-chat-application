@@ -7,12 +7,12 @@ const nodeModules = fs.readdirSync('./node_modules').filter(d => d != '.bin');
 function ignoreNodeModules(context, request, callback){
     if(request[0] == '.')
         return callback();
-    
+
     const module = request.split('/')[0];
     if(nodeModules.indexOf(module) !== -1) {
         return callback(null ,'commonjs ' + request);
     }
-    
+
     return callback();
 }
 
@@ -20,13 +20,13 @@ function ignoreNodeModules(context, request, callback){
 
 
 function createConfig(isDebug) {
-    
+
     const plugins= [];
-    
+
     if(!isDebug) {
         plugins.push(new webpack.optimize.UglifyJsPlugin());
     }
-    
+
     //-----------------
     // webpack config
     return {
@@ -35,7 +35,7 @@ function createConfig(isDebug) {
         entry: './src/server/server.js',
         output: {
             path: path.join(__dirname, 'build'),
-            filename: 'server.js' 
+            filename: 'server.js'
         },
         resolve: {
             alias: {
