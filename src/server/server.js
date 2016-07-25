@@ -1,8 +1,5 @@
 import "source-map-support/register";
 
-import {blegh} from 'shared/test';
-
-blegh();
 
 console.log('From Server');
 
@@ -73,6 +70,13 @@ app.get('/', (req, res) => {
 
  io.on('connection', socket => {
     console.log(`Got connection from ${socket.request.connection.remoteAddress}`); 
+
+    let index = 0;
+
+    setInterval(() => {
+        socket.emit('test', `On index ${index++}`);
+    }, 1000);
+
  });
 
 // -------------------
@@ -81,7 +85,7 @@ app.get('/', (req, res) => {
 
 
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080   ;
 function startServer() {
 	server.listen(port, () => {
 		console.log(`Started http server on ${port}`);

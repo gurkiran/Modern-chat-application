@@ -36,10 +36,13 @@
   },
   "dependencies": {
     "express": "^4.13.4",
+    "font-awesome": "^4.6.3",
     "jade": "^1.11.0",
     "jquery": "^2.2.4",
     "nodemon": "^1.9.2",
+    "rxjs": "^5.0.0-beta.9",
     "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6",
     "source-map-support": "^0.4.0"
   }
 }
